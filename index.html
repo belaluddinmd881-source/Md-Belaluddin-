@@ -2,1695 +2,399 @@
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>NOOR PVC PRINTING</title>
 
 <style>
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-    font-family:Arial,sans-serif;
-}
-
-body{
-    min-height:100vh;
-    background:linear-gradient(135deg,#061b3a,#0874d9);
-    padding:18px;
-}
-
-.container{
-    width:100%;
-    max-width:560px;
-    margin:20px auto;
-    background:#fff;
-    border-radius:22px;
-    padding:25px;
-    box-shadow:0 15px 45px rgba(0,0,0,.30);
-}
-
-.logo{
-    text-align:center;
-    font-size:28px;
-    font-weight:800;
-    color:#0754b8;
-}
-
-.subtitle{
-    text-align:center;
-    color:#777;
-    margin:8px 0 22px;
-}
-
-h2{
-    text-align:center;
-    color:#222;
-    margin-bottom:18px;
-}
-
-h3{
-    color:#0754b8;
-    margin:18px 0 10px;
-}
-
-input,select,textarea{
-    width:100%;
-    padding:13px;
-    margin-bottom:12px;
-    border:1px solid #ddd;
-    border-radius:10px;
-    font-size:15px;
-    outline:none;
-}
-
-textarea{
-    min-height:80px;
-    resize:vertical;
-}
-
-input:focus,
-select:focus,
-textarea:focus{
-    border-color:#0754b8;
-}
-
-button{
-    width:100%;
-    padding:14px;
-    border:0;
-    border-radius:10px;
-    background:#0754b8;
-    color:white;
-    font-size:16px;
-    font-weight:bold;
-    cursor:pointer;
-    margin-top:6px;
-}
-
-.secondary{
-    background:#555;
-}
-
-.danger{
-    background:#d62828;
-}
-
-.link{
-    text-align:center;
-    margin-top:17px;
-    color:#0754b8;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-.hidden{
-    display:none!important;
-}
-
-.message{
-    text-align:center;
-    margin:10px 0;
-    font-weight:bold;
-    font-size:14px;
-}
-
-.success-text{
-    color:green;
-}
-
-.error-text{
-    color:red;
-}
-
-.box{
-    background:#f5f7fa;
-    padding:14px;
-    border-radius:12px;
-    margin-bottom:14px;
-}
-
-.price{
-    font-size:22px;
-    font-weight:800;
-    color:#0754b8;
-}
-
-.small{
-    font-size:12px;
-    color:#666;
-    line-height:1.6;
-}
-
-.order{
-    background:#f5f7fa;
-    border-left:5px solid #0754b8;
-    padding:13px;
-    border-radius:10px;
-    margin:10px 0;
-}
-
-.order p{
-    margin:6px 0;
-    font-size:14px;
-}
-
-.badge{
-    display:inline-block;
-    background:#ffe08a;
-    border-radius:20px;
-    padding:5px 10px;
-    font-size:12px;
-    font-weight:bold;
-}
-
-.footer{
-    text-align:center;
-    color:#888;
-    font-size:12px;
-    margin-top:20px;
-}
-
-@media(max-width:430px){
-    .container{
-        padding:20px 16px;
-    }
-}
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
+body{background:linear-gradient(135deg,#061b3a,#0874d9);min-height:100vh;padding:20px}
+.container{max-width:500px;margin:auto;background:#fff;border-radius:20px;padding:25px;box-shadow:0 10px 35px #0005}
+.logo{text-align:center;font-size:27px;font-weight:bold;color:#0754b8}
+.sub{text-align:center;color:#777;margin:7px 0 22px}
+h2{text-align:center;margin:15px 0;color:#222}
+input,select,textarea{width:100%;padding:13px;margin:7px 0;border:1px solid #ddd;border-radius:9px;font-size:15px}
+button{width:100%;padding:13px;margin:7px 0;border:0;border-radius:9px;background:#0754b8;color:white;font-size:15px;font-weight:bold;cursor:pointer}
+.secondary{background:#555}
+.danger{background:#c62828}
+.card{background:#f5f8fc;padding:15px;border-radius:12px;margin:12px 0}
+.hidden{display:none}
+.price{font-size:22px;font-weight:bold;text-align:center;margin:12px;color:#0754b8}
+.order{border:1px solid #ddd;border-radius:10px;padding:12px;margin:10px 0}
+.status{font-weight:bold}
+.small{font-size:12px;color:#666}
 </style>
 </head>
 
 <body>
-
 <div class="container">
 
-<div class="logo">
-NOOR PVC PRINTING
-</div>
-
-<div class="subtitle">
-Dealer PVC Card Ordering System
-</div>
-
+<div class="logo">NOOR PVC PRINTING</div>
+<div class="sub">Dealer PVC Card Ordering System</div>
 
 <!-- LOGIN -->
-
-<section id="login">
-
+<section id="loginPage">
 <h2>Dealer Login</h2>
-
-<div id="loginMsg" class="message"></div>
-
-<input
-id="loginMobile"
-type="tel"
-placeholder="Mobile Number">
-
-<input
-id="loginPassword"
-type="password"
-placeholder="Password">
-
-<button onclick="login()">
-LOGIN
-</button>
-
-<div class="link" onclick="showPage('register')">
-New Dealer? Create Account
-</div>
-
+<input id="loginEmail" type="email" placeholder="Email">
+<input id="loginPassword" type="password" placeholder="Password">
+<button onclick="login()">LOGIN</button>
+<button class="secondary" onclick="show('registerPage')">CREATE DEALER ACCOUNT</button>
+<button class="secondary" onclick="show('adminLoginPage')">ADMIN LOGIN</button>
 </section>
-
 
 <!-- REGISTER -->
-
-<section id="register" class="hidden">
-
+<section id="registerPage" class="hidden">
 <h2>Create Dealer Account</h2>
-
-<div id="registerMsg" class="message"></div>
-
-<input
-id="shopName"
-type="text"
-placeholder="Shop Name">
-
-<input
-id="ownerName"
-type="text"
-placeholder="Owner Name">
-
-<input
-id="regMobile"
-type="tel"
-placeholder="Mobile Number">
-
-<input
-id="address"
-type="text"
-placeholder="Address">
-
-<input
-id="regPassword"
-type="password"
-placeholder="Create Password">
-
-<button onclick="createAccount()">
-CREATE ACCOUNT
-</button>
-
-<div class="link" onclick="showPage('login')">
-Already have an account? Login
-</div>
-
+<input id="shop" placeholder="Shop Name">
+<input id="owner" placeholder="Owner Name">
+<input id="mobile" placeholder="Mobile Number">
+<input id="address" placeholder="Address">
+<input id="regEmail" type="email" placeholder="Email">
+<input id="regPassword" type="password" placeholder="Create Password">
+<button onclick="register()">CREATE ACCOUNT</button>
+<button class="secondary" onclick="show('loginPage')">BACK TO LOGIN</button>
 </section>
 
+<!-- DEALER -->
+<section id="dealerPage" class="hidden">
+<h2>New PVC Card Order</h2>
 
-<!-- DASHBOARD -->
+<input id="customerName" placeholder="Customer Name">
+<input id="customerMobile" placeholder="Customer Mobile">
+<textarea id="deliveryAddress" placeholder="Delivery Address"></textarea>
 
-<section id="dashboard" class="hidden">
-
-<h2>Dealer Dashboard</h2>
-
-<div id="dealerInfo" class="box">
-</div>
-
-<button onclick="showPage('orderForm')">
-🪪 PLACE PVC CARD ORDER
-</button>
-
-<button class="secondary" onclick="showOrders()">
-📋 MY ORDERS
-</button>
-
-<button class="danger" onclick="logout()">
-LOGOUT
-</button>
-
-</section>
-
-
-<!-- ORDER FORM -->
-
-<section id="orderForm" class="hidden">
-
-<h2>🪪 PVC CARD ORDER</h2>
-
-<div id="orderMsg" class="message"></div>
-
-
-<h3>Customer Details</h3>
-
-<input
-id="customerName"
-type="text"
-placeholder="Customer Name *">
-
-<input
-id="customerMobile"
-type="tel"
-placeholder="Customer Mobile Number *">
-
-<textarea
-id="customerInfo"
-placeholder="Customer / ID Information">
-</textarea>
-
-<input
-id="deliveryAddress"
-type="text"
-placeholder="Delivery Address *">
-
-
-<h3>Card Details</h3>
-
-<select id="cardType" onchange="calculatePrice()">
-
-<option value="">
-Select Card Type *
-</option>
-
-<option value="Waterproof">
-Waterproof Card
-</option>
-
-<option value="Normal">
-Normal Card
-</option>
-
+<select id="quality" onchange="calculate()">
+<option value="Waterproof">Waterproof Card</option>
+<option value="Normal">Normal Card</option>
 </select>
 
-
-<div class="box small">
-
-<b>💧 WATERPROOF CARD</b><br>
-1–15 pcs = ₹75 / piece<br>
-16–30 pcs = ₹65 / piece<br>
-31–50 pcs = ₹50 / piece<br>
-50+ pcs = ₹50 / piece
-
-<br><br>
-
-<b>📄 NORMAL CARD</b><br>
-1–20 pcs = ₹60 / piece<br>
-21–50 pcs = ₹45 / piece<br>
-50+ pcs = ₹45 / piece
-
-<br><br>
-
-<b>🚚 DELIVERY</b><br>
-10 pcs or less = Delivery charge applicable<br>
-11 pcs or more = FREE DELIVERY
-
-</div>
-
-
-<select id="cardSize">
-
-<option value="">
-Select Card Size *
-</option>
-
-<option value="Standard PVC Card">
-Standard PVC Card
-</option>
-
-<option value="Custom Size">
-Custom Size
-</option>
-
+<select id="size">
+<option value="Standard">Standard PVC Card</option>
 </select>
 
+<input id="quantity" type="number" min="1" placeholder="Quantity" oninput="calculate()">
 
-<input
-id="quantity"
-type="number"
-min="1"
-value="1"
-placeholder="Quantity *"
-oninput="calculatePrice()">
+<div class="price" id="total">Total: ₹0</div>
 
-
-<div class="box">
-
-<div>
-Rate:
-<span id="rate" class="price">
-₹0
-</span>
-/ piece
+<div class="card">
+<b>Pricing</b><br><br>
+Waterproof: 1–15 = ₹75/card<br>
+16–30 = ₹65/card<br>
+31–50+ = ₹50/card<br><br>
+Normal: 1–20 = ₹60/card<br>
+21–50+ = ₹45/card<br><br>
+<b>10 পিসের উপরে Delivery Charge FREE</b>
 </div>
 
-<br>
+<input id="pdf" type="file" accept="application/pdf">
+<input id="payment" placeholder="Payment Reference / Transaction ID">
+<textarea id="note" placeholder="Order Note (Optional)"></textarea>
 
-<div>
-Card Amount:
-<b id="cardAmount">
-₹0
-</b>
-</div>
+<button onclick="placeOrder()">PLACE ORDER</button>
+<button class="secondary" onclick="myOrders()">MY ORDERS</button>
+<button class="danger" onclick="logout()">LOGOUT</button>
 
-<br>
-
-<div>
-Delivery:
-<b id="delivery">
-Applicable
-</b>
-</div>
-
-<br>
-
-<div>
-Total:
-<span id="total" class="price">
-₹0
-</span>
-</div>
-
-</div>
-
-
-<h3>📄 PDF File</h3>
-
-<input
-id="pdfFile"
-type="file"
-accept=".pdf,application/pdf"
-onchange="checkPDF()">
-
-<div id="fileInfo" class="small">
-Only PDF file can be uploaded.
-</div>
-
-
-<h3>💳 Payment</h3>
-
-<div class="box">
-
-<b>Payment Account Number</b>
-
-<br><br>
-
-<span style="
-font-size:22px;
-color:#0754b8;
-font-weight:800;
-">
-
-7478679325
-
-</span>
-
-<br><br>
-
-<span class="small">
-Payment করার পরে Transaction / Reference Number দিন।
-</span>
-
-</div>
-
-
-<input
-id="transaction"
-type="text"
-placeholder="Payment Transaction / Reference Number">
-
-
-<textarea
-id="orderNote"
-placeholder="Additional Note / Special Instruction">
-</textarea>
-
-
-<button onclick="submitOrder()">
-SUBMIT PVC CARD ORDER
-</button>
-
-
-<button
-class="secondary"
-onclick="showPage('dashboard')">
-
-BACK TO DASHBOARD
-
-</button>
-
+<div id="dealerOrders"></div>
 </section>
 
-
-<!-- ORDERS -->
-
-<section id="orders" class="hidden">
-
-<h2>📋 MY ORDERS</h2>
-
-<div id="ordersList">
-</div>
-
-<button
-class="secondary"
-onclick="showPage('dashboard')">
-
-BACK TO DASHBOARD
-
-</button>
-
+<!-- ADMIN LOGIN -->
+<section id="adminLoginPage" class="hidden">
+<h2>Admin Login</h2>
+<input id="adminEmail" type="email" value="belaluddinmd881@gmail.com" placeholder="Admin Email">
+<input id="adminPassword" type="password" placeholder="Admin Password">
+<button onclick="adminLogin()">ADMIN LOGIN</button>
+<button class="secondary" onclick="show('loginPage')">BACK</button>
 </section>
 
+<!-- ADMIN -->
+<section id="adminPage" class="hidden">
+<h2>ADMIN PANEL</h2>
 
-<div class="footer">
-Secure Dealer Ordering Portal
-<br>
-NOOR PVC PRINTING
+<button onclick="loadAdmin()">REFRESH ORDERS</button>
+<button class="danger" onclick="logout()">LOGOUT</button>
+
+<div id="adminOrders"></div>
+</section>
+
 </div>
 
-</div>
-
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
+const SUPABASE_URL="https://gqujbufuottnwcfktnua.supabase.co";
 
-/* ==============================
-   PAGE SYSTEM
-============================== */
+/* এখানে নিজের SUPABASE PUBLISHABLE / PUBLIC KEY বসাবে */
+const SUPABASE_KEY="sb_publishable_Y90kv1OjbpBsQFFD9Y54Vg_pZN7At2Z";
 
-const pages = [
-    "login",
-    "register",
-    "dashboard",
-    "orderForm",
-    "orders"
-];
+const db=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 
-function showPage(page){
-
-    pages.forEach(function(item){
-
-        document
-        .getElementById(item)
-        .classList
-        .add("hidden");
-
-    });
-
-    document
-    .getElementById(page)
-    .classList
-    .remove("hidden");
-
-
-    if(page === "dashboard"){
-        showDealerInfo();
-    }
-
-    if(page === "orderForm"){
-        calculatePrice();
-    }
-
-    if(page === "orders"){
-        showOrders();
-    }
-
+function show(id){
+document.querySelectorAll("section").forEach(x=>x.classList.add("hidden"));
+document.getElementById(id).classList.remove("hidden");
 }
 
+function calculate(){
+let q=parseInt(document.getElementById("quantity").value)||0;
+let type=document.getElementById("quality").value;
+let rate=0;
 
-/* ==============================
-   STORAGE
-============================== */
-
-function getDealers(){
-
-    return JSON.parse(
-        localStorage.getItem("noorDealers") || "[]"
-    );
-
+if(type==="Waterproof"){
+if(q<=15) rate=75;
+else if(q<=30) rate=65;
+else rate=50;
+}else{
+if(q<=20) rate=60;
+else rate=45;
 }
 
-
-function saveDealers(data){
-
-    localStorage.setItem(
-        "noorDealers",
-        JSON.stringify(data)
-    );
-
+document.getElementById("total").innerText=
+"Total: ₹"+(q*rate)+" | ₹"+rate+"/card";
 }
 
+async function register(){
+let shop_name=document.getElementById("shop").value;
+let owner_name=document.getElementById("owner").value;
+let mobile=document.getElementById("mobile").value;
+let address=document.getElementById("address").value;
+let email=document.getElementById("regEmail").value;
+let password=document.getElementById("regPassword").value;
 
-function getOrders(){
-
-    return JSON.parse(
-        localStorage.getItem("noorOrders") || "[]"
-    );
-
+if(!shop_name||!owner_name||!mobile||!email||!password){
+alert("সব তথ্য পূরণ করুন");
+return;
 }
 
+let {data,error}=await db.auth.signUp({email,password});
 
-function saveOrders(data){
+if(error){alert(error.message);return;}
 
-    localStorage.setItem(
-        "noorOrders",
-        JSON.stringify(data)
-    );
+let userId=data.user?.id;
 
+if(userId){
+let r=await db.from("dealers").insert({
+id:userId,shop_name,owner_name,mobile,address
+});
+
+if(r.error){alert(r.error.message);return;}
 }
 
-
-function getLoggedDealer(){
-
-    return JSON.parse(
-        localStorage.getItem(
-            "noorLoggedDealer"
-        ) || "null"
-    );
-
+alert("Dealer Account তৈরি হয়েছে। এখন Login করুন।");
+show("loginPage");
 }
 
+async function login(){
+let email=document.getElementById("loginEmail").value;
+let password=document.getElementById("loginPassword").value;
 
-/* ==============================
-   MESSAGE
-============================== */
+let {error}=await db.auth.signInWithPassword({email,password});
 
-function message(id,text,success){
+if(error){alert(error.message);return;}
 
-    const element =
-        document.getElementById(id);
-
-    element.textContent = text;
-
-    element.className =
-        "message " +
-        (
-            success
-            ? "success-text"
-            : "error-text"
-        );
-
+show("dealerPage");
 }
 
+async function adminLogin(){
+let email=document.getElementById("adminEmail").value;
+let password=document.getElementById("adminPassword").value;
 
-/* ==============================
-   CREATE ACCOUNT
-============================== */
+let {data,error}=await db.auth.signInWithPassword({email,password});
 
-function createAccount(){
+if(error){alert(error.message);return;}
 
-    const shop =
-        document
-        .getElementById("shopName")
-        .value.trim();
+let check=await db.from("admin_users")
+.select("user_id")
+.eq("user_id",data.user.id)
+.maybeSingle();
 
-
-    const owner =
-        document
-        .getElementById("ownerName")
-        .value.trim();
-
-
-    const mobile =
-        document
-        .getElementById("regMobile")
-        .value.trim();
-
-
-    const address =
-        document
-        .getElementById("address")
-        .value.trim();
-
-
-    const password =
-        document
-        .getElementById("regPassword")
-        .value;
-
-
-    if(
-        !shop ||
-        !owner ||
-        !mobile ||
-        !address ||
-        !password
-    ){
-
-        message(
-            "registerMsg",
-            "সব তথ্য পূরণ করুন।",
-            false
-        );
-
-        return;
-
-    }
-
-
-    if(password.length < 4){
-
-        message(
-            "registerMsg",
-            "Password কমপক্ষে ৪ অক্ষরের হতে হবে।",
-            false
-        );
-
-        return;
-
-    }
-
-
-    const dealers =
-        getDealers();
-
-
-    const exists =
-        dealers.some(function(dealer){
-
-            return dealer.mobile === mobile;
-
-        });
-
-
-    if(exists){
-
-        message(
-            "registerMsg",
-            "এই Mobile Number দিয়ে Account আগে থেকেই আছে।",
-            false
-        );
-
-        return;
-
-    }
-
-
-    dealers.push({
-
-        shopName:shop,
-
-        ownerName:owner,
-
-        mobile:mobile,
-
-        address:address,
-
-        password:password
-
-    });
-
-
-    saveDealers(dealers);
-
-
-    document
-    .getElementById("loginMobile")
-    .value = mobile;
-
-
-    message(
-        "registerMsg",
-        "Account সফলভাবে তৈরি হয়েছে। এখন Login করুন।",
-        true
-    );
-
-
-    setTimeout(function(){
-
-        showPage("login");
-
-    },1000);
-
+if(check.error||!check.data){
+await db.auth.signOut();
+alert("এই Account Admin নয়");
+return;
 }
 
-
-/* ==============================
-   LOGIN
-============================== */
-
-function login(){
-
-    const mobile =
-        document
-        .getElementById("loginMobile")
-        .value.trim();
-
-
-    const password =
-        document
-        .getElementById("loginPassword")
-        .value;
-
-
-    const dealers =
-        getDealers();
-
-
-    const dealer =
-        dealers.find(function(item){
-
-            return(
-                item.mobile === mobile &&
-                item.password === password
-            );
-
-        });
-
-
-    if(!dealer){
-
-        message(
-            "loginMsg",
-            "Mobile Number অথবা Password ভুল।",
-            false
-        );
-
-        return;
-
-    }
-
-
-    localStorage.setItem(
-        "noorLoggedDealer",
-        JSON.stringify(dealer)
-    );
-
-
-    document
-    .getElementById("loginPassword")
-    .value = "";
-
-
-    showPage("dashboard");
-
+show("adminPage");
+loadAdmin();
 }
 
+async function placeOrder(){
+let {data:userData}=await db.auth.getUser();
 
-/* ==============================
-   DEALER INFO
-============================== */
-
-function showDealerInfo(){
-
-    const dealer =
-        getLoggedDealer();
-
-
-    if(!dealer){
-
-        showPage("login");
-
-        return;
-
-    }
-
-
-    document
-    .getElementById("dealerInfo")
-    .innerHTML =
-
-    "<p><b>Shop Name:</b> " +
-    safe(dealer.shopName) +
-    "</p>" +
-
-    "<p><b>Owner Name:</b> " +
-    safe(dealer.ownerName) +
-    "</p>" +
-
-    "<p><b>Mobile:</b> " +
-    safe(dealer.mobile) +
-    "</p>" +
-
-    "<p><b>Address:</b> " +
-    safe(dealer.address) +
-    "</p>";
-
+if(!userData.user){
+alert("আগে Login করুন");
+return;
 }
 
+let q=parseInt(document.getElementById("quantity").value)||0;
+let type=document.getElementById("quality").value;
 
-/* ==============================
-   LOGOUT
-============================== */
-
-function logout(){
-
-    localStorage.removeItem(
-        "noorLoggedDealer"
-    );
-
-    showPage("login");
-
+if(q<1){
+alert("Quantity দিন");
+return;
 }
 
+let rate;
 
-/* ==============================
-   RATE CALCULATION
-============================== */
-
-function getRate(type,quantity){
-
-    if(type === "Waterproof"){
-
-        if(quantity >= 1 && quantity <= 15){
-            return 75;
-        }
-
-        if(quantity >= 16 && quantity <= 30){
-            return 65;
-        }
-
-        if(quantity >= 31){
-            return 50;
-        }
-
-    }
-
-
-    if(type === "Normal"){
-
-        if(quantity >= 1 && quantity <= 20){
-            return 60;
-        }
-
-        if(quantity >= 21){
-            return 45;
-        }
-
-    }
-
-
-    return 0;
-
+if(type==="Waterproof"){
+rate=q<=15?75:q<=30?65:50;
+}else{
+rate=q<=20?60:45;
 }
 
+let file=document.getElementById("pdf").files[0];
 
-/* ==============================
-   PRICE
-============================== */
-
-function calculatePrice(){
-
-    const type =
-        document
-        .getElementById("cardType")
-        .value;
-
-
-    const quantity =
-        Number(
-            document
-            .getElementById("quantity")
-            .value
-        ) || 0;
-
-
-    const rate =
-        getRate(
-            type,
-            quantity
-        );
-
-
-    const amount =
-        rate * quantity;
-
-
-    document
-    .getElementById("rate")
-    .textContent =
-        "₹" + rate;
-
-
-    document
-    .getElementById("cardAmount")
-    .textContent =
-        "₹" + amount;
-
-
-    if(quantity >= 11){
-
-        document
-        .getElementById("delivery")
-        .textContent =
-        "FREE";
-
-        document
-        .getElementById("total")
-        .textContent =
-        "₹" + amount;
-
-    }
-    else{
-
-        document
-        .getElementById("delivery")
-        .textContent =
-        "Applicable";
-
-        document
-        .getElementById("total")
-        .textContent =
-        "₹" + amount +
-        " + Delivery";
-
-    }
-
+if(!file){
+alert("শুধু PDF file upload করুন");
+return;
 }
 
-
-/* ==============================
-   PDF VALIDATION
-============================== */
-
-function checkPDF(){
-
-    const file =
-        document
-        .getElementById("pdfFile")
-        .files[0];
-
-
-    const info =
-        document
-        .getElementById("fileInfo");
-
-
-    if(!file){
-
-        info.textContent =
-        "Only PDF file can be uploaded.";
-
-        return;
-
-    }
-
-
-    const valid =
-        file.type === "application/pdf" ||
-        file.name
-        .toLowerCase()
-        .endsWith(".pdf");
-
-
-    if(!valid){
-
-        document
-        .getElementById("pdfFile")
-        .value = "";
-
-
-        info.textContent =
-        "শুধু PDF file upload করা যাবে।";
-
-        return;
-
-    }
-
-
-    const size =
-        (
-            file.size /
-            1024 /
-            1024
-        ).toFixed(2);
-
-
-    info.textContent =
-        "PDF Selected: " +
-        file.name +
-        " (" +
-        size +
-        " MB)";
-
+if(file.type!=="application/pdf"){
+alert("শুধু PDF file গ্রহণ করা হবে");
+return;
 }
 
-
-/* ==============================
-   SUBMIT ORDER
-============================== */
-
-function submitOrder(){
-
-    const dealer =
-        getLoggedDealer();
-
-
-    if(!dealer){
-
-        showPage("login");
-
-        return;
-
-    }
-
-
-    const customerName =
-        document
-        .getElementById("customerName")
-        .value.trim();
-
-
-    const customerMobile =
-        document
-        .getElementById("customerMobile")
-        .value.trim();
-
-
-    const customerInfo =
-        document
-        .getElementById("customerInfo")
-        .value.trim();
-
-
-    const deliveryAddress =
-        document
-        .getElementById("deliveryAddress")
-        .value.trim();
-
-
-    const cardType =
-        document
-        .getElementById("cardType")
-        .value;
-
-
-    const cardSize =
-        document
-        .getElementById("cardSize")
-        .value;
-
-
-    const quantity =
-        Number(
-            document
-            .getElementById("quantity")
-            .value
-        );
-
-
-    const pdf =
-        document
-        .getElementById("pdfFile")
-        .files[0];
-
-
-    const transaction =
-        document
-        .getElementById("transaction")
-        .value.trim();
-
-
-    const note =
-        document
-        .getElementById("orderNote")
-        .value.trim();
-
-
-    if(
-        !customerName ||
-        !customerMobile ||
-        !deliveryAddress ||
-        !cardType ||
-        !cardSize ||
-        quantity < 1
-    ){
-
-        message(
-            "orderMsg",
-            "সব Required তথ্য পূরণ করুন।",
-            false
-        );
-
-        return;
-
-    }
-
-
-    if(!pdf){
-
-        message(
-            "orderMsg",
-            "PDF file upload করুন।",
-            false
-        );
-
-        return;
-
-    }
-
-
-    const isPDF =
-        pdf.type === "application/pdf" ||
-        pdf.name
-        .toLowerCase()
-        .endsWith(".pdf");
-
-
-    if(!isPDF){
-
-        message(
-            "orderMsg",
-            "শুধু PDF file গ্রহণ করা হবে।",
-            false
-        );
-
-        return;
-
-    }
-
-
-    /*
-       Browser demo-এর জন্য PDF
-       সর্বোচ্চ 3 MB রাখা হয়েছে।
-    */
-
-    if(
-        pdf.size >
-        3 * 1024 * 1024
-    ){
-
-        message(
-            "orderMsg",
-            "PDF file 3 MB-এর মধ্যে রাখুন।",
-            false
-        );
-
-        return;
-
-    }
-
-
-    const reader =
-        new FileReader();
-
-
-    reader.onload =
-        function(){
-
-            const rate =
-                getRate(
-                    cardType,
-                    quantity
-                );
-
-
-            const cardAmount =
-                rate * quantity;
-
-
-            const order = {
-
-                orderId:
-                    "NP" +
-                    Date.now()
-                    .toString()
-                    .slice(-9),
-
-                dealerMobile:
-                    dealer.mobile,
-
-                shopName:
-                    dealer.shopName,
-
-                customerName:
-                    customerName,
-
-                customerMobile:
-                    customerMobile,
-
-                customerInfo:
-                    customerInfo,
-
-                deliveryAddress:
-                    deliveryAddress,
-
-                cardType:
-                    cardType,
-
-                cardSize:
-                    cardSize,
-
-                quantity:
-                    quantity,
-
-                rate:
-                    rate,
-
-                cardAmount:
-                    cardAmount,
-
-                delivery:
-                    quantity >= 11
-                    ? 0
-                    : null,
-
-                pdfName:
-                    pdf.name,
-
-                pdfData:
-                    reader.result,
-
-                transaction:
-                    transaction,
-
-                note:
-                    note,
-
-                status:
-                    "Pending",
-
-                date:
-                    new Date()
-                    .toLocaleString()
-
-            };
-
-
-            const allOrders =
-                getOrders();
-
-
-            allOrders.push(order);
-
-
-            saveOrders(
-                allOrders
-            );
-
-
-            message(
-                "orderMsg",
-                "Order সফলভাবে Submit হয়েছে। Order No: " +
-                order.orderId,
-                true
-            );
-
-
-            clearOrder();
-
-        };
-
-
-    reader.readAsDataURL(pdf);
-
+let fileName=Date.now()+"_"+file.name;
+let path=userData.user.id+"/"+fileName;
+
+/*
+PDF upload করার জন্য Supabase Storage-এ pvc-pdf bucket
+তৈরি করা থাকলে এই অংশ কাজ করবে।
+*/
+let upload=await db.storage
+.from("pvc-pdf")
+.upload(path,file);
+
+if(upload.error){
+alert("PDF Upload Error: "+upload.error.message);
+return;
 }
 
+let orderNumber=Date.now();
 
-/* ==============================
-   CLEAR FORM
-============================== */
+let order={
+dealer_id:userData.user.id,
+order_number:orderNumber,
+pdf_path:path,
+quality:type,
+quantity:q,
+price_per_card:rate,
+status:"Pending"
+};
 
-function clearOrder(){
+let result=await db.from("orders").insert(order);
 
-    document
-    .getElementById("customerName")
-    .value = "";
-
-
-    document
-    .getElementById("customerMobile")
-    .value = "";
-
-
-    document
-    .getElementById("customerInfo")
-    .value = "";
-
-
-    document
-    .getElementById("deliveryAddress")
-    .value = "";
-
-
-    document
-    .getElementById("cardType")
-    .value = "";
-
-
-    document
-    .getElementById("cardSize")
-    .value = "";
-
-
-    document
-    .getElementById("quantity")
-    .value = "1";
-
-
-    document
-    .getElementById("pdfFile")
-    .value = "";
-
-
-    document
-    .getElementById("fileInfo")
-    .textContent =
-    "Only PDF file can be uploaded.";
-
-
-    document
-    .getElementById("transaction")
-    .value = "";
-
-
-    document
-    .getElementById("orderNote")
-    .value = "";
-
-
-    calculatePrice();
-
+if(result.error){
+alert(result.error.message);
+return;
 }
 
+alert("Order সফলভাবে পাঠানো হয়েছে। Order No: "+orderNumber);
 
-/* ==============================
-   ORDER HISTORY
-============================== */
-
-function showOrders(){
-
-    const dealer =
-        getLoggedDealer();
-
-
-    if(!dealer){
-
-        showPage("login");
-
-        return;
-
-    }
-
-
-    const allOrders =
-        getOrders();
-
-
-    const myOrders =
-        allOrders
-        .filter(function(order){
-
-            return(
-                order.dealerMobile ===
-                dealer.mobile
-            );
-
-        })
-        .reverse();
-
-
-    const list =
-        document
-        .getElementById("ordersList");
-
-
-    if(myOrders.length === 0){
-
-        list.innerHTML =
-        "<div class='box' style='text-align:center'>" +
-        "এখনও কোনো Order নেই।" +
-        "</div>";
-
-        return;
-
-    }
-
-
-    list.innerHTML = "";
-
-
-    myOrders.forEach(
-        function(order){
-
-            const div =
-                document
-                .createElement("div");
-
-
-            div.className =
-                "order";
-
-
-            div.innerHTML =
-
-            "<p><b>Order No:</b> " +
-            safe(order.orderId) +
-            "</p>" +
-
-            "<p><b>Date:</b> " +
-            safe(order.date) +
-            "</p>" +
-
-            "<p><b>Customer:</b> " +
-            safe(order.customerName) +
-            "</p>" +
-
-            "<p><b>Mobile:</b> " +
-            safe(order.customerMobile) +
-            "</p>" +
-
-            "<p><b>Card:</b> " +
-            safe(order.cardType) +
-            "</p>" +
-
-            "<p><b>Quantity:</b> " +
-            order.quantity +
-            " × ₹" +
-            order.rate +
-            "</p>" +
-
-            "<p><b>Card Amount:</b> ₹" +
-            order.cardAmount +
-            "</p>" +
-
-            "<p><b>Delivery:</b> " +
-            (
-                order.delivery === 0
-                ? "FREE"
-                : "Applicable"
-            ) +
-            "</p>" +
-
-            "<p><b>Payment Ref:</b> " +
-            safe(
-                order.transaction ||
-                "Not provided"
-            ) +
-            "</p>" +
-
-            "<p><b>PDF:</b> " +
-            safe(order.pdfName) +
-            "</p>" +
-
-            "<p><b>Status:</b> " +
-
-            "<span class='badge'>" +
-
-            safe(order.status) +
-
-            "</span>" +
-
-            "</p>";
-
-
-            if(order.pdfData){
-
-                const button =
-                    document
-                    .createElement("button");
-
-
-                button.textContent =
-                    "DOWNLOAD PDF";
-
-
-                button.onclick =
-                    function(){
-
-                        downloadPDF(
-                            order.orderId
-                        );
-
-                    };
-
-
-                div.appendChild(
-                    button
-                );
-
-            }
-
-
-            list.appendChild(div);
-
-        }
-    );
-
+document.getElementById("quantity").value="";
+document.getElementById("pdf").value="";
+document.getElementById("payment").value="";
+document.getElementById("note").value="";
+calculate();
 }
 
+async function myOrders(){
+let {data:userData}=await db.auth.getUser();
 
-/* ==============================
-   DOWNLOAD PDF
-============================== */
+let r=await db.from("orders")
+.select("*")
+.eq("dealer_id",userData.user.id)
+.order("created_at",{ascending:false});
 
-function downloadPDF(orderId){
+if(r.error){alert(r.error.message);return;}
 
-    const order =
-        getOrders()
-        .find(function(item){
+let html="<h2>My Orders</h2>";
 
-            return(
-                item.orderId ===
-                orderId
-            );
+r.data.forEach(o=>{
+html+=`
+<div class="order">
+<b>Order No:</b> ${o.order_number}<br>
+<b>Quality:</b> ${o.quality}<br>
+<b>Quantity:</b> ${o.quantity}<br>
+<b>Rate:</b> ₹${o.price_per_card}<br>
+<b>Total:</b> ₹${o.quantity*o.price_per_card}<br>
+<b>Status:</b> <span class="status">${o.status}</span><br>
+<span class="small">${o.created_at}</span>
+</div>`;
+});
 
-        });
-
-
-    if(
-        !order ||
-        !order.pdfData
-    ){
-
-        return;
-
-    }
-
-
-    const link =
-        document
-        .createElement("a");
-
-
-    link.href =
-        order.pdfData;
-
-
-    link.download =
-        order.pdfName ||
-        "PVC-Card-Order.pdf";
-
-
-    document
-    .body
-    .appendChild(link);
-
-
-    link.click();
-
-
-    link.remove();
-
+document.getElementById("dealerOrders").innerHTML=html;
 }
 
+async function loadAdmin(){
+let r=await db.from("orders")
+.select("*")
+.order("created_at",{ascending:false});
 
-/* ==============================
-   SAFE TEXT
-============================== */
-
-function safe(value){
-
-    return String(
-        value || ""
-    )
-    .replace(
-        /[&<>"']/g,
-        function(char){
-
-            return {
-
-                "&":"&amp;",
-                "<":"&lt;",
-                ">":"&gt;",
-                '"':"&quot;",
-                "'":"&#039;"
-
-            }[char];
-
-        }
-    );
-
+if(r.error){
+alert(r.error.message);
+return;
 }
 
+let html="<h2>All Orders</h2>";
 
-/* ==============================
-   START WEBSITE
-============================== */
+if(!r.data.length){
+html+="<p>No orders yet.</p>";
+}
 
-window.addEventListener(
-    "load",
-    function(){
+for(let o of r.data){
 
-        if(getLoggedDealer()){
+let fileUrl="#";
 
-            showPage("dashboard");
+if(o.pdf_path){
+let x=await db.storage.from("pvc-pdf").createSignedUrl(o.pdf_path,3600);
+if(x.data?.signedUrl) fileUrl=x.data.signedUrl;
+}
 
-        }
-        else{
+html+=`
+<div class="order">
+<b>Order No:</b> ${o.order_number}<br>
+<b>Dealer ID:</b> ${o.dealer_id}<br>
+<b>Quality:</b> ${o.quality}<br>
+<b>Quantity:</b> ${o.quantity}<br>
+<b>Rate:</b> ₹${o.price_per_card}<br>
+<b>Total:</b> ₹${o.quantity*o.price_per_card}<br>
+<b>Status:</b> ${o.status}<br>
+<a href="${fileUrl}" target="_blank">
+<button>OPEN PDF</button>
+</a>
 
-            showPage("login");
+<select id="status_${o.id}">
+<option ${o.status==="Pending"?"selected":""}>Pending</option>
+<option ${o.status==="Processing"?"selected":""}>Processing</option>
+<option ${o.status==="Completed"?"selected":""}>Completed</option>
+<option ${o.status==="Cancelled"?"selected":""}>Cancelled</option>
+</select>
 
-        }
+<button onclick="updateStatus('${o.id}')">UPDATE STATUS</button>
+</div>`;
+}
 
-    }
-);
+document.getElementById("adminOrders").innerHTML=html;
+}
 
+async function updateStatus(id){
+let status=document.getElementById("status_"+id).value;
+
+let r=await db.from("orders")
+.update({status})
+.eq("id",id);
+
+if(r.error){
+alert(r.error.message);
+return;
+}
+
+alert("Status Updated");
+loadAdmin();
+}
+
+async function logout(){
+await db.auth.signOut();
+show("loginPage");
+}
 </script>
 
 </body>
