@@ -69,6 +69,11 @@ button{
     color:white;
     font-size:16px;
     font-weight:bold;
+    cursor:pointer;
+}
+
+button:active{
+    transform:scale(.98);
 }
 
 .link{
@@ -76,6 +81,7 @@ button{
     margin-top:18px;
     color:#0754b8;
     font-weight:bold;
+    cursor:pointer;
 }
 
 .hidden{
@@ -87,6 +93,33 @@ button{
     color:#888;
     font-size:12px;
     margin-top:22px;
+}
+
+.message{
+    text-align:center;
+    margin-bottom:15px;
+    font-weight:bold;
+    font-size:14px;
+}
+
+.success{
+    color:green;
+}
+
+.error{
+    color:red;
+}
+
+.dashboard p{
+    margin:10px 0;
+    padding:10px;
+    background:#f5f7fa;
+    border-radius:8px;
+}
+
+.logout{
+    margin-top:15px;
+    background:#d62828;
 }
 </style>
 </head>
@@ -110,11 +143,17 @@ Dealer PVC Card Ordering System
 
 <h2>Dealer Login</h2>
 
-<input type="tel" placeholder="Mobile Number">
+<div id="loginMessage" class="message"></div>
 
-<input type="password" placeholder="Password">
+<input id="loginMobile"
+       type="tel"
+       placeholder="Mobile Number">
 
-<button>
+<input id="loginPassword"
+       type="password"
+       placeholder="Password">
+
+<button onclick="loginDealer()">
 LOGIN
 </button>
 
@@ -131,23 +170,54 @@ New Dealer? Create Account
 
 <h2>Create Dealer Account</h2>
 
-<input type="text" placeholder="Shop Name">
+<div id="registerMessage" class="message"></div>
 
-<input type="text" placeholder="Owner Name">
+<input id="shopName"
+       type="text"
+       placeholder="Shop Name">
 
-<input type="tel" placeholder="Mobile Number">
+<input id="ownerName"
+       type="text"
+       placeholder="Owner Name">
 
-<input type="text" placeholder="Address">
+<input id="mobile"
+       type="tel"
+       placeholder="Mobile Number">
 
-<input type="password" placeholder="Create Password">
+<input id="address"
+       type="text"
+       placeholder="Address">
 
-<button>
+<input id="password"
+       type="password"
+       placeholder="Create Password">
+
+<button onclick="createAccount()">
 CREATE ACCOUNT
 </button>
 
 <div class="link" onclick="loginPage()">
 Already have an account? Login
 </div>
+
+</div>
+
+
+<!-- DASHBOARD -->
+
+<div id="dashboard" class="hidden dashboard">
+
+<h2>Dealer Dashboard</h2>
+
+<div id="dealerInfo"></div>
+
+<button onclick="placeOrder()">
+PLACE PVC CARD ORDER
+</button>
+
+<button class="logout" onclick="logoutDealer()">
+LOGOUT
+</button>
 
 </div>
 
@@ -161,19 +231,286 @@ Secure Dealer Ordering Portal
 
 <script>
 
+/* =========================
+   PAGE SWITCH
+========================= */
+
 function registerPage(){
 
-document.getElementById("login").classList.add("hidden");
+    document.getElementById("login").classList.add("hidden");
+    document.getElementById("dashboard").classList.add("hidden");
 
-document.getElementById("register").classList.remove("hidden");
+    document.getElementById("register").classList.remove("hidden");
 
 }
 
+
 function loginPage(){
 
-document.getElementById("register").classList.add("hidden");
+    document.getElementById("register").classList.add("hidden");
+    document.getElementById("dashboard").classList.add("hidden");
 
-document.getElementById("login").classList.remove("hidden");
+    document.getElementById("login").classList.remove("hidden");
+
+}
+
+
+/* =========================
+   CREATE ACCOUNT
+========================= */
+
+function createAccount(){
+
+    const shopName =
+        document.getElementById("shopName").value.trim();
+
+    const ownerName =
+        document.getElementById("ownerName").value.trim();
+
+    const mobile =
+        document.getElementById("mobile").value.trim();
+
+    const address =
+        document.getElementById("address").value.trim();
+
+    const password =
+        document.getElementById("password").value;
+
+    const message =
+        document.getElementById("registerMessage");
+
+
+    if(
+        !shopName ||
+        !ownerName ||
+        !mobile ||
+        !address ||
+        !password
+    ){
+
+        message.className = "message error";
+        message.innerText =
+            "Please fill all information.";
+
+        return;
+    }
+
+
+    if(password.length < 4){
+
+        message.className = "message error";
+        message.innerText =
+            "Password must be at least 4 characters.";
+
+        return;
+    }
+
+
+    let dealers =
+        JSON.parse(localStorage.getItem("noorDealers")) || [];
+
+
+    const existingDealer =
+        dealers.find(function(dealer){
+
+            return dealer.mobile === mobile;
+
+        });
+
+
+    if(existingDealer){
+
+        message.className = "message error";
+        message.innerText =
+            "This mobile number is already registered.";
+
+        return;
+    }
+
+
+    const dealer = {
+
+        shopName: shopName,
+        ownerName: ownerName,
+        mobile: mobile,
+        address: address,
+        password: password
+
+    };
+
+
+    dealers.push(dealer);
+
+
+    localStorage.setItem(
+        "noorDealers",
+        JSON.stringify(dealers)
+    );
+
+
+    message.className = "message success";
+
+    message.innerText =
+        "Account created successfully!";
+
+
+    setTimeout(function(){
+
+        document.getElementById("shopName").value = "";
+        document.getElementById("ownerName").value = "";
+        document.getElementById("mobile").value = "";
+        document.getElementById("address").value = "";
+        document.getElementById("password").value = "";
+
+        document.getElementById("register").classList.add("hidden");
+
+        document.getElementById("login").classList.remove("hidden");
+
+        document.getElementById("loginMobile").value = mobile;
+
+    },1000);
+
+}
+
+
+/* =========================
+   LOGIN
+========================= */
+
+function loginDealer(){
+
+    const mobile =
+        document.getElementById("loginMobile").value.trim();
+
+    const password =
+        document.getElementById("loginPassword").value;
+
+    const message =
+        document.getElementById("loginMessage");
+
+
+    let dealers =
+        JSON.parse(localStorage.getItem("noorDealers")) || [];
+
+
+    const dealer =
+        dealers.find(function(item){
+
+            return item.mobile === mobile &&
+                   item.password === password;
+
+        });
+
+
+    if(!dealer){
+
+        message.className = "message error";
+
+        message.innerText =
+            "Invalid mobile number or password.";
+
+        return;
+    }
+
+
+    localStorage.setItem(
+        "loggedDealer",
+        JSON.stringify(dealer)
+    );
+
+
+    showDashboard(dealer);
+
+}
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+function showDashboard(dealer){
+
+    document.getElementById("login")
+        .classList.add("hidden");
+
+    document.getElementById("register")
+        .classList.add("hidden");
+
+    document.getElementById("dashboard")
+        .classList.remove("hidden");
+
+
+    document.getElementById("dealerInfo").innerHTML =
+
+        "<p><b>Shop Name:</b> " +
+        dealer.shopName +
+        "</p>" +
+
+        "<p><b>Owner Name:</b> " +
+        dealer.ownerName +
+        "</p>" +
+
+        "<p><b>Mobile:</b> " +
+        dealer.mobile +
+        "</p>" +
+
+        "<p><b>Address:</b> " +
+        dealer.address +
+        "</p>";
+
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+function logoutDealer(){
+
+    localStorage.removeItem("loggedDealer");
+
+    document.getElementById("dashboard")
+        .classList.add("hidden");
+
+    document.getElementById("login")
+        .classList.remove("hidden");
+
+    document.getElementById("loginMobile").value = "";
+    document.getElementById("loginPassword").value = "";
+
+}
+
+
+/* =========================
+   AUTO LOGIN
+========================= */
+
+window.onload = function(){
+
+    const loggedDealer =
+        JSON.parse(
+            localStorage.getItem("loggedDealer")
+        );
+
+
+    if(loggedDealer){
+
+        showDashboard(loggedDealer);
+
+    }
+
+};
+
+
+/* =========================
+   ORDER BUTTON
+========================= */
+
+function placeOrder(){
+
+    alert(
+        "PVC Card Order System will be added next."
+    );
 
 }
 
